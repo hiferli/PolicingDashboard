@@ -2,30 +2,45 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-def getLatLong():
+def getData():
     # Files and Data/Boston Crime.csv
     path = 'Files and Data/Boston Crime.csv'
     crime_df = pd.read_csv(path , encoding='unicode_escape')
     crime_df = crime_df.dropna(how='any',axis=0) 
-    # crime_df = crime_df
-    crime_df['OFFENSE_CODE'] = "#" + crime_df['OFFENSE_CODE'].astype(str)
-    # print(crime_df['OFFENSE_CODE'][0])
-    filtered_df = crime_df[['Lat', 'Long', 'OFFENSE_CODE']]
-    filtered_df.columns = ['latitude', 'longitude', 'offense_code']
+    return crime_df
 
-    # TODO: Try making a different color segmnet for different colors
+def getYears(crime_df):
+    years = list(crime_df['YEAR'].unique());
+    years.insert(0 , 'All Years')
+    return years
 
-    return filtered_df
+def getYearWiseDataFrame(crime_df , yearOption):
+    returnCols = ['OFFENSE_CODE' , 'OFFENSE_DESCRIPTION' , 'OCCURRED_ON_DATE' , 'Location'];
+    if yearOption == 'All Years': return crime_df[returnCols];
+    return crime_df[(crime_df['YEAR'] == yearOption)][returnCols];
+
 
 
 def boston_page():
     st.title("Boston Page")
     st.write("Welcome to the Boston page!")
 
-    df = getLatLong();
-    st.map(df , latitude='latitude', longitude='longitude')
+    df = getData();
+    st.map(df , latitude='Lat', longitude='Long')
 
-    # st.dataframe(df) 
+    st.title("Boston Crime Report");
+
+    st.subheader("Year-Wise Classification of Crime")
+    years = getYears(df);
+    yearOption = st.selectbox(
+        f"Data related to the Crimes in Boston",
+        years,
+        index=0,
+        placeholder="Select contact method...",
+    )
+
+    st.dataframe(getYearWiseDataFrame(df , yearOption), use_container_width=True , hide_index=True)
+    st.write('Showing Results for year: ', yearOption)
 
 if __name__ == "__main__":
     boston_page()
