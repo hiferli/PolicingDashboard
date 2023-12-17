@@ -8,7 +8,7 @@ colsForOffenseWiseDataFrame = ['Dates' , 'Category' , 'Descript' , 'Resolution' 
 
 def getData():
     # Files and Data/Boston Crime.csv
-    path = 'Files and Data/mydata.csv'
+    path = 'Files and Data/San Francisco.csv'
     crime_df = pd.read_csv(path , encoding='unicode_escape')
     crime_df = crime_df.dropna(how='any',axis=0) 
     return crime_df
