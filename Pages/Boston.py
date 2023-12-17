@@ -61,7 +61,7 @@ def boston_page():
 
     with col1: 
         yearWiseData = getYearWiseDataFrame(df , values[0] , values[-1]);
-        st.write(f'{yearWiseData.size} Records Found For Years: ' , values)
+        st.write(f'{yearWiseData.shape[0]} Records Found For Years: ' , values)
         st.dataframe(yearWiseData, use_container_width=True , hide_index=True)
 
     with col2:
@@ -78,7 +78,7 @@ def boston_page():
     )
     
     offenseWiseData = getOffenseWiseDataframe(df , offenseOption);
-    st.write(f'{offenseWiseData.size} Records Found For' , offenseOption)
+    st.write(f'{offenseWiseData.shape[0]} Records Found For' , offenseOption)
     tab1, tab2 = st.tabs(['Chart' , 'Data']);
     
     with tab1:
