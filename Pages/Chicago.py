@@ -71,7 +71,7 @@ def chicago_page():
 
     offenses = getOffense(df);
     offenseOption = st.selectbox(
-        f"Offense-Wise Data related to the Crimes in Boston",
+        f"Offense-Wise Data related to the Crimes in Chicagos",
         offenses,
         index=0,
         placeholder="Select An Offense...",
