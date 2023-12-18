@@ -41,6 +41,12 @@ def getOffenseWiseDataframe(crime_df , offenseOption):
     return crime_df[(crime_df['Primary Type'] == offenseOption)][colsForOffenseWiseDataFrame]    
 
 def chicago_page():
+    st.set_page_config(
+        page_title="Chicago - Dashboard",
+        page_icon="chart_with_upwards_trend",
+        layout="wide",
+    )
+
     st.title("Chicago Page")
     st.write("Welcome to the Chicago page!")
 

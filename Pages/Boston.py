@@ -42,8 +42,14 @@ def getColor():
 
 
 def boston_page():
-    st.title("Boston Page")
-    st.write("Welcome to the Boston page!")
+    st.set_page_config(
+        page_title="Boston - Dashboard",
+        page_icon="chart_with_upwards_trend",
+        layout="wide",
+    )
+
+    st.title("Boston")
+
 
     df = getData();
     st.map(df , latitude='Lat', longitude='Long' , color=getColor())

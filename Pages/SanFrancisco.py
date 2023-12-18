@@ -40,6 +40,12 @@ def getOffenseWiseDataframe(crime_df , offenseOption):
     return crime_df[(crime_df['Category'] == offenseOption)][colsForOffenseWiseDataFrame]
 
 def san_francisco_page():
+    st.set_page_config(
+        page_title="San Francisco - Dashboard",
+        page_icon="chart_with_upwards_trend",
+        layout="wide",
+    )
+
     st.title("San Francisco Page")
     st.write("Welcome to the San Francisco page!")
 
