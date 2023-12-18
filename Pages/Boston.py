@@ -50,6 +50,19 @@ def boston_page():
 
     st.title("Boston")
 
+    # Details
+    imageColumn , textColumn = st.columns(2);
+    with imageColumn:
+        st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/boston-7399414b98.jpg' , caption='Boston');
+    with textColumn:
+        st.header('About')
+        st.markdown(
+            '<div style="text-align: justify;"><b><u><a href=https://www.google.com/search?q=Boston>Boston</a></u></b>, officially the City of Boston, is the capital and most populous city in the Commonwealth of Massachusetts, and is the cultural & financial center of New England in the Northeastern United States, with an area of 48.4 sq mi and a <i>population of 675,647 in 2020</i>.</div>'
+            , unsafe_allow_html=True)
+        st.header('Population')
+        st.write('6.55 lakhs (2021)');
+        st.header('Elevation')
+        st.write('46 ft (14 m)')
 
     df = getData();
     st.map(df , latitude='Lat', longitude='Long' , color=getColor())
