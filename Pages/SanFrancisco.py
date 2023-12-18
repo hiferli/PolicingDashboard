@@ -44,7 +44,7 @@ def san_francisco_page():
     st.write("Welcome to the San Francisco page!")
 
     df = getData();
-    st.map(df.head(1000) , latitude='Lat' , longitude='Long' , color=getColor());
+    st.map(df.head(1000) , latitude='Lat' , longitude='Long' , color=getColor() , use_container_width=True);
 
     st.title("San Francisco Crime Report");
 
@@ -77,7 +77,7 @@ def san_francisco_page():
     )
     offenseWiseData = getOffenseWiseDataframe(df , offenseOption);
     st.write(f'{offenseWiseData.shape[0]} Records Found For' , offenseOption)
-    tab1, tab2 = st.tabs(['Chart' , 'Data']);
+    tab1 , tab2 , tab3 = st.tabs(['Chart' , 'Map' , 'Data']);
     
     with tab1:
         if(offenseOption == 'All Offenses'):
@@ -92,6 +92,9 @@ def san_francisco_page():
             st.bar_chart(frequencyDataframe , color=getColor() , use_container_width=True)
 
     with tab2:
+        st.map(offenseWiseData.head(1000) , latitude='Lat' , longitude='Long' , color=getColor() , use_container_width=True);
+    
+    with tab3:
         st.dataframe(offenseWiseData, use_container_width=True , hide_index=True)
 
 

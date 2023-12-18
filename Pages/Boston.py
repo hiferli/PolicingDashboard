@@ -79,7 +79,7 @@ def boston_page():
     
     offenseWiseData = getOffenseWiseDataframe(df , offenseOption);
     st.write(f'{offenseWiseData.shape[0]} Records Found For' , offenseOption)
-    tab1, tab2 = st.tabs(['Chart' , 'Data']);
+    tab1, tab2 , tab3 = st.tabs(['Chart' , 'Map' , 'Data']);
     
     with tab1:
         if(offenseOption == 'All Offenses'):
@@ -92,8 +92,10 @@ def boston_page():
         else:
             frequencyDataframe = df[df['OFFENSE_CODE_GROUP'] == offenseOption]['YEAR'].value_counts().sort_index();
             st.bar_chart(frequencyDataframe , color=getColor() , use_container_width=True)
-
     with tab2:
+        st.map(offenseWiseData , latitude='Lat', longitude='Long' , color=getColor() , use_container_width=True)
+
+    with tab3:
         st.dataframe(offenseWiseData, use_container_width=True , hide_index=True)
 
 

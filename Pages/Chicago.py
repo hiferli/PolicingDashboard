@@ -65,7 +65,7 @@ def chicago_page():
         st.dataframe(yearWiseData, use_container_width=True , hide_index=True)
 
     with col2:
-        st.map(yearWiseData.head(1000) , latitude='Latitude', longitude='Longitude' , color=getColor())
+        st.map(yearWiseData.head(1000) , latitude='Latitude', longitude='Longitude' , color=getColor() , use_container_width=True)
 
     st.subheader("Offense-Wise Classification of Crime")
 
@@ -79,7 +79,7 @@ def chicago_page():
     
     offenseWiseData = getOffenseWiseDataframe(df , offenseOption);
     st.write(f'{offenseWiseData.shape[0]} Records Found For' , offenseOption)
-    tab1, tab2 = st.tabs(['Chart' , 'Data']);
+    tab1 , tab2 , tab3 = st.tabs(['Chart' , 'Map' , 'Data']);
     
     with tab1:
         if(offenseOption == 'All Offenses'):
@@ -92,8 +92,10 @@ def chicago_page():
         else:
             frequencyDataframe = df[df['Primary Type'] == offenseOption]['Year'].value_counts().sort_index();
             st.bar_chart(frequencyDataframe , color=getColor() , use_container_width=True)
-
     with tab2:
+        st.map(offenseWiseData.head(1000) , latitude='Latitude', longitude='Longitude' , color=getColor() , use_container_width=True)
+    
+    with tab3:
         st.dataframe(offenseWiseData, use_container_width=True , hide_index=True)
 
 if __name__ == "__main__":
