@@ -9,7 +9,7 @@ colsForOffenseWiseDataFrame = ['OFFENSE_DESCRIPTION' , 'OCCURRED_ON_DATE' , 'STR
 
 def getData():
     # Files and Data/Boston Crime.csv
-    path = 'Files and Data/Boston Crime.csv'
+    path = 'Files and Data/Boston.csv'
     crime_df = pd.read_csv(path , encoding='unicode_escape')
     crime_df = crime_df.dropna(how='any',axis=0) 
     return crime_df
@@ -65,7 +65,7 @@ def boston_page():
         st.write('46 ft (14 m)')
 
     df = getData();
-    st.map(df , latitude='Lat', longitude='Long' , color=getColor())
+    st.map(df.head(1000) , latitude='Lat', longitude='Long' , color=getColor())
 
     st.title("Boston Crime Report");
 
@@ -84,7 +84,7 @@ def boston_page():
         st.dataframe(yearWiseData, use_container_width=True , hide_index=True)
 
     with col2:
-        st.map(yearWiseData , latitude='Lat', longitude='Long' , color=getColor())
+        st.map(yearWiseData.head(1000) , latitude='Lat', longitude='Long' , color=getColor())
     
     st.subheader("Offense-Wise Classification of Crime")
 
@@ -112,7 +112,7 @@ def boston_page():
             frequencyDataframe = df[df['OFFENSE_CODE_GROUP'] == offenseOption]['YEAR'].value_counts().sort_index();
             st.bar_chart(frequencyDataframe , color=getColor() , use_container_width=True)
     with tab2:
-        st.map(offenseWiseData , latitude='Lat', longitude='Long' , color=getColor() , use_container_width=True)
+        st.map(offenseWiseData.head(1000) , latitude='Lat', longitude='Long' , color=getColor() , use_container_width=True)
 
     with tab3:
         st.dataframe(offenseWiseData, use_container_width=True , hide_index=True)
