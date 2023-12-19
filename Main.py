@@ -33,6 +33,6 @@ def main():
         st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/new-york-9cb6cc2ae5.jpg')
 
     st.write("")
-    st.markdown("<a href='/About' style='text-decoration: none; color: inherit; border: 2px solid white; border-radius: 10px; padding: 5px 10px; display: inline-block; text-align: left'>Read more about us here</a>" , unsafe_allow_html=True)
+    st.markdown("<a href='/About' target='_self' style='text-decoration: none; color: inherit; border: 2px solid white; border-radius: 10px; padding: 5px 10px; display: inline-block; text-align: left'>Read more about us here</a>" , unsafe_allow_html=True)
 if __name__ == "__main__":
     main()
