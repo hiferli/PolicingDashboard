@@ -48,6 +48,8 @@ def boston_page():
         layout="wide",
     )
 
+    df = getData();
+    offenses = getOffense(df);
     st.title("Boston")
 
     # Details
@@ -55,16 +57,21 @@ def boston_page():
     with imageColumn:
         st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/boston-7399414b98.jpg' , caption='Boston');
     with textColumn:
-        st.header('About')
+        # st.header('About')
+        st.header('City in Massachusetts')
         st.markdown(
             '<div style="text-align: justify;"><b><u><a href=https://www.google.com/search?q=Boston>Boston</a></u></b>, officially the City of Boston, is the capital and most populous city in the Commonwealth of Massachusetts, and is the cultural & financial center of New England in the Northeastern United States, with an area of 48.4 sq mi and a <i>population of 675,647 in 2020</i>.</div>'
             , unsafe_allow_html=True)
         st.header('Population')
         st.write('6.55 lakhs (2021)');
-        st.header('Elevation')
-        st.write('46 ft (14 m)')
 
-    df = getData();
+        st.header("Crime Metrics")
+        col1, col2 = st.columns(2)
+        col1.metric("Reported Crimes", df.shape[0])
+        col2.metric("Offenses Reported", len(offenses))
+        # col3.metric("Humidity", "86%")
+
+
     st.map(df.head(1000) , latitude='Lat', longitude='Long' , color=getColor())
 
     st.title("Boston Crime Report");
@@ -88,7 +95,6 @@ def boston_page():
     
     st.subheader("Offense-Wise Classification of Crime")
 
-    offenses = getOffense(df);
     offenseOption = st.selectbox(
         f"Offense-Wise Data related to the Crimes in Boston",
         offenses,

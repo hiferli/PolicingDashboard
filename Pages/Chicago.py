@@ -47,6 +47,9 @@ def chicago_page():
         layout="wide",
     )
 
+    df = getData();
+    offenses = getOffense(df);
+
     st.title("Chicago")
 
     # Details
@@ -54,15 +57,17 @@ def chicago_page():
     with imageColumn:
         st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/chicago-1e610b84c3.jpg' , caption='Chicago');
     with textColumn:
-        st.header('About')
+        st.header('City in Illinois')
         st.markdown(
             '<div style="text-align: justify;"><b><u><a href=https://www.google.com/search?q=Chicago>Chicago</a></u></b>, on Lake Michigan in Illinois, is among the largest cities in the U.S. Famed for its bold architecture, it has a skyline punctuated by skyscrapers such as the iconic John Hancock Center, 1,451-ft. Willis Tower (formerly the Sears Tower) and the neo-Gothic Tribune Tower. The city is also renowned for its museums, including the Art Institute of Chicago with its noted Impressionist and Post-Impressionist works.</div>' , unsafe_allow_html=True)
         st.header('Population')
         st.write('27 lakhs (2021)');
-        st.header('Elevation')
-        st.write('597.18 ft (182.02 m)')
+        
+        st.header("Crime Metrics")
+        col1, col2 = st.columns(2)
+        col1.metric("Reported Crimes", df.shape[0])
+        col2.metric("Offenses Reported", len(offenses))
 
-    df = getData();
     st.map(df.head(1000) , latitude='Latitude' , longitude='Longitude' , color=getColor());
     # st.dataframe(df)
     st.title("Chicago Crime Report");
@@ -87,7 +92,6 @@ def chicago_page():
 
     st.subheader("Offense-Wise Classification of Crime")
 
-    offenses = getOffense(df);
     offenseOption = st.selectbox(
         f"Offense-Wise Data related to the Crimes in Chicagos",
         offenses,

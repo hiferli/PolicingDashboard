@@ -14,7 +14,8 @@ def about_page():
     st.text("")
     st.text("")
     st.markdown("<div style='text-align: justify;'>The main objective of our project is:<ul><li>Using algorithms and visualization to analyze crime data from multiple sources, including crime reports, social media, and police records, providing a more comprehensive view of criminal activities.</li><li>To work on time series model that analyses the crime data collected to predict the location and type of crime going to occur at a location.</li><li>To compare the performance of different time series for better accuracy and precision.</li><li>Design and Develop Application-Based Solution containing Dashboards which helps personnels in their daily work hence contributing to a safe neighbourhood and data-driven security system</li></ul></div>" , unsafe_allow_html=True)
-    st.markdown("<div style='text-align: justify;'><h3><a href='https://drive.google.com/file/d/1M1qdVG4vZdc1o_ShCvHH6CIZcjU6SIno/view?usp=sharing' target='_blank'>Read more</a></h3></div>" , unsafe_allow_html=True)
+    # st.markdown("<div style='text-align: justify;'><h3><a href='' target='_blank'>Read more</a></h3></div>" , unsafe_allow_html=True)
+    st.markdown("<a href='https://drive.google.com/file/d/1M1qdVG4vZdc1o_ShCvHH6CIZcjU6SIno/view?usp=sharing' style='text-decoration: none; color: inherit; border: 2px solid white; border-radius: 10px; padding: 5px 10px; display: inline-block; text-align: left'>Read more</a>" , unsafe_allow_html=True)
 
 if __name__ == "__main__":
     about_page()

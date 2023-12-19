@@ -46,6 +46,9 @@ def san_francisco_page():
         layout="wide",
     )
 
+    df = getData();
+    offenses = getOffense(df);
+
     st.title("San Francisco")
 
     # Details
@@ -54,16 +57,18 @@ def san_francisco_page():
         st.image('https://e1.pxfuel.com/desktop-wallpaper/427/284/desktop-wallpaper-golden-gate-bridge-san-francisco-bay-iphone-golden-gate-bridge-phone-thumbnail.jpg' , caption='San Francisco')
     
     with textColumn:
-        st.header('About')
+        st.header('City in California')
         st.markdown(
             '<div style="text-align: justify;"><b><u><a href=https://www.google.com/search?q=San+Francisco>San Francisco</a></u></b>, officially the City and County of San Francisco, is the commercial, financial, and cultural center of Northern California. The city proper is the fourth most populous city in California, <i>with 808,437 residents</i>, and the 17th most populous city in the United States as of 2022'
             , unsafe_allow_html=True)
         st.header('Population')
         st.write('8.15 lakhs (2021)');
-        st.header('Elevation')
-        st.write('52 ft (16 m)')
+    
+        st.header("Crime Metrics")
+        col1, col2 = st.columns(2)
+        col1.metric("Reported Crimes", df.shape[0])
+        col2.metric("Offenses Reported", len(offenses))
 
-    df = getData();
     st.map(df.head(1000) , latitude='Lat' , longitude='Long' , color=getColor() , use_container_width=True);
 
     st.title("San Francisco Crime Report");
@@ -88,7 +93,6 @@ def san_francisco_page():
 
     st.subheader("Offense-Wise Classification of Crime")
 
-    offenses = getOffense(df);
     offenseOption = st.selectbox(
         f"Offense-Wise Data related to the Crimes in Chicagos",
         offenses,
