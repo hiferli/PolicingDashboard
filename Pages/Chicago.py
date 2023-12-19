@@ -68,7 +68,7 @@ def chicago_page():
         col1.metric("Reported Crimes", df.shape[0])
         col2.metric("Offenses Reported", len(offenses))
 
-    st.map(df.head(1000) , latitude='Latitude' , longitude='Longitude' , color=getColor());
+    st.map(df.head(2000) , latitude='Latitude' , longitude='Longitude' , color=getColor());
     # st.dataframe(df)
     st.title("Chicago Crime Report");
     st.subheader("Year-Wise Classification of Crime")

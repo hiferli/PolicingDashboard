@@ -69,7 +69,7 @@ def san_francisco_page():
         col1.metric("Reported Crimes", df.shape[0])
         col2.metric("Offenses Reported", len(offenses))
 
-    st.map(df.head(1000) , latitude='Lat' , longitude='Long' , color=getColor() , use_container_width=True);
+    st.map(df.head(2000) , latitude='Lat' , longitude='Long' , color=getColor() , use_container_width=True);
 
     st.title("San Francisco Crime Report");
 

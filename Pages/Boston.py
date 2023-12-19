@@ -72,7 +72,7 @@ def boston_page():
         # col3.metric("Humidity", "86%")
 
 
-    st.map(df.head(1000) , latitude='Lat', longitude='Long' , color=getColor())
+    st.map(df.head(2000) , latitude='Lat', longitude='Long' , color=getColor())
 
     st.title("Boston Crime Report");
 
