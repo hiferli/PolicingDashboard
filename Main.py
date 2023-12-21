@@ -18,17 +18,17 @@ def main():
     st.header("Available Dashboards:" , divider=True)
     boston , chicago , sanFrancisco = st.columns(3);
     with boston:
-        st.markdown("<h3><a target='_self' href='/Boston'>Boston</a></h3>" , unsafe_allow_html=True)
+        st.markdown("<h3><a target='_blank' href='/Boston'>Boston</a></h3>" , unsafe_allow_html=True)
         st.write("A City in Massachusetts")
         st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/boston-7399414b98.jpg');
 
     with chicago:
-        st.markdown("<h3><a target='_self' href='/Chicago'>Chicago</a></h3>" , unsafe_allow_html=True)
+        st.markdown("<h3><a target='_blank' href='/Chicago'>Chicago</a></h3>" , unsafe_allow_html=True)
         st.write("A City in Illinois")
         st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/chicago-1e610b84c3.jpg');
 
     with sanFrancisco:
-        st.markdown("<h3><a target='_self' href='/SanFrancisco'>San Francisco</a></h3>" , unsafe_allow_html=True)
+        st.markdown("<h3><a target='_blank' href='/SanFrancisco'>San Francisco</a></h3>" , unsafe_allow_html=True)
         st.write("A City in California")
         st.image('https://d13k13wj6adfdf.cloudfront.net/urban_areas/new-york-9cb6cc2ae5.jpg')
 
